@@ -1,0 +1,12 @@
+D:\My Projects\Alumni_Pro\DatabaseContext\bin\Debug\DatabaseContext.dll.config
+D:\My Projects\Alumni_Pro\DatabaseContext\bin\Debug\DatabaseContext.dll
+D:\My Projects\Alumni_Pro\DatabaseContext\bin\Debug\DatabaseContext.pdb
+D:\My Projects\Alumni_Pro\DatabaseContext\bin\Debug\EntityFramework.dll
+D:\My Projects\Alumni_Pro\DatabaseContext\bin\Debug\EntityFramework.SqlServer.dll
+D:\My Projects\Alumni_Pro\DatabaseContext\bin\Debug\EntityFramework.xml
+D:\My Projects\Alumni_Pro\DatabaseContext\bin\Debug\EntityFramework.SqlServer.xml
+D:\My Projects\Alumni_Pro\DatabaseContext\obj\Debug\DatabaseContext.csproj.AssemblyReference.cache
+D:\My Projects\Alumni_Pro\DatabaseContext\obj\Debug\DatabaseContext.csproj.CoreCompileInputs.cache
+D:\My Projects\Alumni_Pro\DatabaseContext\obj\Debug\DatabaseContext.csproj.CopyComplete
+D:\My Projects\Alumni_Pro\DatabaseContext\obj\Debug\DatabaseContext.dll
+D:\My Projects\Alumni_Pro\DatabaseContext\obj\Debug\DatabaseContext.pdb

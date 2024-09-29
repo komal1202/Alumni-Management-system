@@ -1,0 +1,50 @@
+﻿@model Dictionary<string, int>
+@{
+    ViewBag.Title = "Profession";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Profession Wise Records</h6>
+    </div>
+    <div class="card-body">
+        @foreach (var professionRecord in Model)
+        {
+            <h4 class="small font-weight-bold">
+                @professionRecord.Key <span class="float-right">@professionRecord.Value</span>
+            </h4>
+            <div class="progress mb-4">
+                @{
+                    double percentage = (double)professionRecord.Value / Model.Sum(x => x.Value) * 100;
+                    string progressBarClass = GetProgressBarClass(percentage);
+                }
+                <div class="progress-bar @progressBarClass" role="progressbar" style="width: @(percentage)%"
+                     aria-valuenow="@(percentage)" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@functions {
+    string GetProgressBarClass(double percentage)
+    {
+        if (percentage < 25)
+        {
+            return "bg-danger";
+        }
+        else if (percentage < 50)
+        {
+            return "bg-warning";
+        }
+        else if (percentage < 75)
+        {
+            return "bg-info";
+        }
+        else
+        {
+            return "bg-success";
+        }
+    }
+}
+
+

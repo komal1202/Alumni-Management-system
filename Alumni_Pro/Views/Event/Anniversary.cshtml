@@ -1,0 +1,27 @@
+﻿@model List<DatabaseContext.UserTbl>
+
+<h2>Anniversary Events</h2>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var user in Model)
+        {
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@user.FirstName @user.LastName</h5>
+                        <p class="card-text">Marriage Date: @user.MarriageDate</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No Anniversary events today.</p>
+}
+
+
+

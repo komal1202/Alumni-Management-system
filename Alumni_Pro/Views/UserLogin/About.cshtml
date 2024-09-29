@@ -1,0 +1,128 @@
+﻿@*@model List<DatabaseContext.UserTbl>*@
+@model Dictionary<string, int>
+
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/View.cshtml";
+}
+
+
+
+
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        <p>Total Registered Users: </p>
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalRegisteredUsers</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fa fa-user-plus fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">City Wise Records</h6>
+    </div>
+    <div class="card-body">
+        @{
+            int totalCityCount = 0;
+            foreach (var cityRecord in ViewBag.CityCounts)
+            {
+                totalCityCount += cityRecord.Value;
+            }
+        }
+        @foreach (var cityRecord in ViewBag.CityCounts)
+        {
+            <h4 class="small font-weight-bold">
+                @cityRecord.Key <span class="float-right">@cityRecord.Value</span>
+            </h4>
+            <div class="progress mb-4">
+                @{
+                    double percentage = (double)cityRecord.Value / totalCityCount * 100;
+                    string progressBarClass = GetProgressBarClass(percentage);
+                }
+                <div class="progress-bar @progressBarClass" role="progressbar" style="width: @(percentage)%"
+                     aria-valuenow="@(percentage)" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Profession Wise Records</h6>
+    </div>
+    <div class="card-body">
+        @{
+            int totalProfessionCount = 0;
+            foreach (var professionRecord in ViewBag.ProfessionCounts)
+            {
+                totalProfessionCount += professionRecord.Value;
+            }
+        }
+        @foreach (var professionRecord in ViewBag.ProfessionCounts)
+        {
+            <h4 class="small font-weight-bold">
+                @professionRecord.Key <span class="float-right">@professionRecord.Value</span>
+            </h4>
+            <div class="progress mb-4">
+                @{
+                    double percentage = (double)professionRecord.Value / totalProfessionCount * 100;
+                    string progressBarClass = GetProgressBarClass(percentage);
+                }
+                <div class="progress-bar @progressBarClass" role="progressbar" style="width: @(percentage)%"
+                     aria-valuenow="@(percentage)" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@functions {
+    string GetProgressBarClass(double percentage)
+    {
+        if (percentage < 25)
+        {
+            return "bg-danger";
+        }
+        else if (percentage < 50)
+        {
+            return "bg-warning";
+        }
+        else if (percentage < 75)
+        {
+            return "bg-info";
+        }
+        else
+        {
+            return "bg-success";
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

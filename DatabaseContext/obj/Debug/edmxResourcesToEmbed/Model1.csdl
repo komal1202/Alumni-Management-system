@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="UserTbl">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdditionalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="Int64" />
+    <Property Name="AlternateMobileNo" Type="Int64" />
+    <Property Name="LandlineNo" Type="Int64" />
+    <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ConfirmPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MarriageDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Profession" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Hobbies" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Experience" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FamilyInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="OtherInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CollegePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CouplePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FamilyPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserTypeTbl" Relationship="Self.FK_UserTbl_UserTypeTbl" FromRole="UserTbl" ToRole="UserTypeTbl" />
+  </EntityType>
+  <EntityType Name="UserTypeTbl">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserTbls" Relationship="Self.FK_UserTbl_UserTypeTbl" FromRole="UserTypeTbl" ToRole="UserTbl" />
+  </EntityType>
+  <Association Name="FK_UserTbl_UserTypeTbl">
+    <End Role="UserTypeTbl" Type="Self.UserTypeTbl" Multiplicity="1" />
+    <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTypeTbl">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="UserTbl">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ADBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserTbls" EntityType="Self.UserTbl" />
+    <EntitySet Name="UserTypeTbls" EntityType="Self.UserTypeTbl" />
+    <AssociationSet Name="FK_UserTbl_UserTypeTbl" Association="Self.FK_UserTbl_UserTypeTbl">
+      <End Role="UserTypeTbl" EntitySet="UserTypeTbls" />
+      <End Role="UserTbl" EntitySet="UserTbls" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

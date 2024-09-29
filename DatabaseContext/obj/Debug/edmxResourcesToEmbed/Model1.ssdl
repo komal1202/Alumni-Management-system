@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="UserTbl">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTypeID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdditionalName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="bigint" />
+    <Property Name="AlternateMobileNo" Type="bigint" />
+    <Property Name="LandlineNo" Type="bigint" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="150" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="ConfirmPassword" Type="varchar" MaxLength="20" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
+    <Property Name="MarriageDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="City" Type="nvarchar" MaxLength="150" />
+    <Property Name="State" Type="nvarchar" MaxLength="150" />
+    <Property Name="Country" Type="nvarchar" MaxLength="150" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="Profession" Type="varchar" MaxLength="150" />
+    <Property Name="Hobbies" Type="varchar" MaxLength="150" />
+    <Property Name="Experience" Type="nvarchar" MaxLength="500" />
+    <Property Name="FamilyInfo" Type="nvarchar" MaxLength="500" />
+    <Property Name="OtherInfo" Type="nvarchar" MaxLength="500" />
+    <Property Name="Photo" Type="varchar(max)" />
+    <Property Name="CollegePhoto" Type="varchar(max)" />
+    <Property Name="CouplePhoto" Type="varchar(max)" />
+    <Property Name="FamilyPhoto" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="UserTypeTbl">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_UserTbl_UserTypeTbl">
+    <End Role="UserTypeTbl" Type="Self.UserTypeTbl" Multiplicity="1" />
+    <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTypeTbl">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="UserTbl">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ADBModelStoreContainer">
+    <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTypeTbl" EntityType="Self.UserTypeTbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_UserTbl_UserTypeTbl" Association="Self.FK_UserTbl_UserTypeTbl">
+      <End Role="UserTypeTbl" EntitySet="UserTypeTbl" />
+      <End Role="UserTbl" EntitySet="UserTbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

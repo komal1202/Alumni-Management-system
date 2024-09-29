@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="bigint" />
+          <Property Name="AlternateMobileNo" Type="bigint" />
+          <Property Name="LandlineNo" Type="bigint" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="150" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="ConfirmPassword" Type="varchar" MaxLength="20" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
+          <Property Name="MarriageDate" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="City" Type="nvarchar" MaxLength="150" />
+          <Property Name="State" Type="nvarchar" MaxLength="150" />
+          <Property Name="Country" Type="nvarchar" MaxLength="150" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Profession" Type="varchar" MaxLength="150" />
+          <Property Name="Hobbies" Type="varchar" MaxLength="150" />
+          <Property Name="Experience" Type="nvarchar" MaxLength="500" />
+          <Property Name="FamilyInfo" Type="nvarchar" MaxLength="500" />
+          <Property Name="OtherInfo" Type="nvarchar" MaxLength="500" />
+          <Property Name="Photo" Type="varchar(max)" />
+          <Property Name="CollegePhoto" Type="varchar(max)" />
+          <Property Name="CouplePhoto" Type="varchar(max)" />
+          <Property Name="FamilyPhoto" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserTypeTbl">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_UserTbl_UserTypeTbl">
+          <End Role="UserTypeTbl" Type="Self.UserTypeTbl" Multiplicity="1" />
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeTbl">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTbl">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ADBModelStoreContainer">
+          <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTypeTbl" EntityType="Self.UserTypeTbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserTbl_UserTypeTbl" Association="Self.FK_UserTbl_UserTypeTbl">
+            <End Role="UserTypeTbl" EntitySet="UserTypeTbl" />
+            <End Role="UserTbl" EntitySet="UserTbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="Int64" />
+          <Property Name="AlternateMobileNo" Type="Int64" />
+          <Property Name="LandlineNo" Type="Int64" />
+          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MarriageDate" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Profession" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Hobbies" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Experience" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FamilyInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OtherInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CollegePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CouplePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FamilyPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTypeTbl" Relationship="Self.FK_UserTbl_UserTypeTbl" FromRole="UserTbl" ToRole="UserTypeTbl" />
+        </EntityType>
+        <EntityType Name="UserTypeTbl">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTbls" Relationship="Self.FK_UserTbl_UserTypeTbl" FromRole="UserTypeTbl" ToRole="UserTbl" />
+        </EntityType>
+        <Association Name="FK_UserTbl_UserTypeTbl">
+          <End Role="UserTypeTbl" Type="Self.UserTypeTbl" Multiplicity="1" />
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeTbl">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTbl">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ADBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserTbls" EntityType="Self.UserTbl" />
+          <EntitySet Name="UserTypeTbls" EntityType="Self.UserTypeTbl" />
+          <AssociationSet Name="FK_UserTbl_UserTypeTbl" Association="Self.FK_UserTbl_UserTypeTbl">
+            <End Role="UserTypeTbl" EntitySet="UserTypeTbls" />
+            <End Role="UserTbl" EntitySet="UserTbls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ADBModelStoreContainer" CdmEntityContainer="ADBEntities">
+          <EntitySetMapping Name="UserTbls">
+            <EntityTypeMapping TypeName="ADBModel.UserTbl">
+              <MappingFragment StoreEntitySet="UserTbl">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="AdditionalName" ColumnName="AdditionalName" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="AlternateMobileNo" ColumnName="AlternateMobileNo" />
+                <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="MarriageDate" ColumnName="MarriageDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="Hobbies" ColumnName="Hobbies" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="FamilyInfo" ColumnName="FamilyInfo" />
+                <ScalarProperty Name="OtherInfo" ColumnName="OtherInfo" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="CollegePhoto" ColumnName="CollegePhoto" />
+                <ScalarProperty Name="CouplePhoto" ColumnName="CouplePhoto" />
+                <ScalarProperty Name="FamilyPhoto" ColumnName="FamilyPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypeTbls">
+            <EntityTypeMapping TypeName="ADBModel.UserTypeTbl">
+              <MappingFragment StoreEntitySet="UserTypeTbl">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

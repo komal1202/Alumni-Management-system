@@ -1,0 +1,106 @@
+﻿@model Tuple<List<DatabaseContext.UserTbl>, List<DatabaseContext.UserTbl>>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+
+    @if (Model.Item1.Any())
+    {
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary mb-1">
+                                <h4>Birthdays Today</h4>
+                            </div>
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">
+                                <ul>
+                                    @foreach (var user in Model.Item1)
+                                    {
+                                        <li>@user.FirstName @user.LastName</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-birthday-cake fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-1">
+                            <div class="font-weight-bold text-primary mb-1">
+                                <h4>No Birthdays Today</h4>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-birthday-cake fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.Item2.Any())
+    {
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary mb-1">
+                                <h4>Anniversaries Today</h4>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <ul>
+                                    @foreach (var user in Model.Item2)
+                                    {
+                                        <li>@user.FirstName @user.LastName</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-heart fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="col-xl-6 col-md-4 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary  mb-1">
+                                <h4>No Anniversaries Today</h4>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-heart fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@Html.ActionLink("Upcoming Events", "upcoming", "Event", new { @class = "btn btn-primary animate__animated animate__fadeInUp" })
